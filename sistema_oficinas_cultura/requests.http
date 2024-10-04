@@ -1,0 +1,15 @@
+### Hello
+GET http://localhost:3000
+
+### Cadastrar aluno
+POST http://localhost:3000/alunos
+Content-Type: application/json
+
+{
+  "nome": "John",
+  "endereco": "Doe",
+  "telefone": "123456789",
+  "email": "jonh@doe.com",
+  "anoNascimento": 1990
+}
+
