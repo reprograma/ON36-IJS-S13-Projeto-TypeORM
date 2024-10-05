@@ -1,4 +1,5 @@
 import {
+  IsArray,
   IsEmail,
   IsNotEmpty,
   IsNumber,
@@ -14,7 +15,6 @@ export class CreateAlunoDto {
   endereco: string;
 
   @IsNotEmpty()
-  @IsEmail()
   email: string;
 
   @IsString()
@@ -24,4 +24,7 @@ export class CreateAlunoDto {
   @IsPositive()
   @IsNumber()
   anoNascimento: number;
+
+  @IsArray({ message: 'Cursos deve ser uma lista de array.' })
+  cursos: string[];
 }

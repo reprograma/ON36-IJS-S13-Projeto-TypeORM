@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+/* import { Module } from '@nestjs/common';
 import { AlunoRepository } from '../../../application/ports/aluno.repository';
 import { InMemoryAlunoRepository } from './repositories/aluno.repository';
 
@@ -13,3 +13,4 @@ import { InMemoryAlunoRepository } from './repositories/aluno.repository';
   exports: [AlunoRepository],
 })
 export class InMemoryAlunoPersistenceModule {}
+ */

@@ -5,23 +5,29 @@ import { CreateAlunoCommand } from '../../application/commands/create-aluno-comm
 
 @Controller('alunos')
 export class AlunoController {
-  constructor(private readonly alunoService: AlunoService) {}
+  constructor(private readonly alunoService: AlunoService) { }
 
   @Post()
-  cadastrar(@Body() createAlunoDto: CreateAlunoDto) {
-    return this.alunoService.cadastrar(
-      new CreateAlunoCommand(
-        createAlunoDto.nome,
-        createAlunoDto.endereco,
-        createAlunoDto.email,
-        createAlunoDto.telefone,
-        createAlunoDto.anoNascimento,
-      ),
+  async cadastrar(@Body() createAlunoDto: CreateAlunoDto) {
+    const createAlunoCommand = new CreateAlunoCommand(
+      createAlunoDto.nome,
+      createAlunoDto.endereco,
+      createAlunoDto.email,
+      createAlunoDto.telefone,
+      createAlunoDto.anoNascimento,
+      createAlunoDto.cursos
     );
+
+    return await this.alunoService.cadastrar(createAlunoCommand);
   }
 
-  @Get()
-  listar() {
+  /* @Get()
+  async listar() {
     return this.alunoService.listar();
-  }
+  } */
+
+  /* @Get(':email')
+  async buscarPorEmail(@Param('email') email: string) {
+    return await this.alunoService.buscarPorEmail(email)
+  } */
 }

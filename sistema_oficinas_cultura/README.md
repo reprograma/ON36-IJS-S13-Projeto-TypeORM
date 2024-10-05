@@ -45,6 +45,10 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+## migration
+
+npm run migration:generate -- src/aluno/infrastructure/persistence/typeorm/migrations/CriaTabelaAlunoCurso
+
 ## Test
 
 ```bash
