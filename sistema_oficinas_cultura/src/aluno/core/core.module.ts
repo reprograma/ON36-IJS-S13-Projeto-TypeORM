@@ -1,14 +1,22 @@
 // Esse arquivo foi gerado pelo comando nest g mo core.
 
-import { Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
 import { ApplicationBootstrapOptions } from '../common/interfaces/application-bootstrap-options.interface';
+import { TypeOrmAlunoPersistenceModule } from '../infrastructure/persistence/typeorm/typeorm-persistence.module';
 
 @Module({})
 export class CoreModule {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  static forRoot(options: ApplicationBootstrapOptions) {
+  static forRoot(options: ApplicationBootstrapOptions): DynamicModule {
     const imports = [];
-    // options.driver === 'typeorm // aqui podem entrar multiplas configurações de banco de dados
+    
+    if (options.driver === 'typeorm') {
+      imports.push(TypeOrmAlunoPersistenceModule)
+    } else if (options.driver === 'in-memory') {
+      throw new Error('Não foi implementado.')
+    } else if (options.driver === 'in-file') {
+      throw new Error('Não foi implementado.')
+    }
 
     return {
       module: CoreModule,
