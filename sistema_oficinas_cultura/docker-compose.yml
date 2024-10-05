@@ -1,0 +1,8 @@
+version: "3.6"
+services:
+  postgres:
+    image: postgres:11.7-alpine
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: p4ssw0rd-t3st3-db

@@ -1,15 +1,19 @@
 import { Module } from '@nestjs/common';
-import { InMemoryAlunoPersistenceModule } from './persistence/in-memory/in-memory-persistence.module';
-import { InFileAlunoPersistenceModule } from './persistence/in-file/in-file-persistence.module';
+import { TypeOrmAlunoPersistenceModule } from './persistence/typeorm/typeorm-persistence.module';
 
 @Module({})
 export class AlunoInfrastructureModule {
-  static use(driver: 'in-file' | 'in-memory') {
-    const persistenceModule =
-      driver === 'in-file'
-        ? InFileAlunoPersistenceModule
-        : InMemoryAlunoPersistenceModule;
+  static use(driver: 'in-file' | 'in-memory' | 'typeorm') {
+    let persistenceModule;
 
+    if (driver === 'typeorm') {
+      persistenceModule = TypeOrmAlunoPersistenceModule;
+    } else if (driver === 'in-file' || driver === 'in-memory') {
+      throw new Error('Persistencia ainda nao implementada.')
+    } else {
+      throw new Error('Driver invalido.')
+    }
+    
     return {
       module: AlunoInfrastructureModule,
       imports: [persistenceModule],
